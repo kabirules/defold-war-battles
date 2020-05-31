@@ -1,50 +1,15 @@
-name: "main"
-instances {
-  id: "tank"
-  prototype: "/main/tank.go"
-  position {
-    x: 12.0
-    y: 178.0
-    z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "tank1"
-  prototype: "/main/tank.go"
-  position {
-    x: 164.0
-    y: 168.0
-    z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
+name: "default"
 scale_along_z: 0
 embedded_instances {
-  id: "map"
-  data: "components {\n"
-  "  id: \"map\"\n"
-  "  component: \"/main/map.tilemap\"\n"
+  id: "bg"
+  data: "embedded_components {\n"
+  "  id: \"sprite\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/virtual_gamepad/virtual_gamepad.atlas\\\"\\n"
+  "default_animation: \\\"colored_shroom\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -59,9 +24,9 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 100.0
-    z: 0.0
+    x: 0.0
+    y: 0.0
+    z: -1.0
   }
   rotation {
     x: 0.0
@@ -70,16 +35,16 @@ embedded_instances {
     w: 1.0
   }
   scale3 {
-    x: 1.0
-    y: 1.0
+    x: 4.0
+    y: 4.0
     z: 1.0
   }
 }
 embedded_instances {
   id: "player"
   data: "components {\n"
-  "  id: \"player\"\n"
-  "  component: \"/main/player.script\"\n"
+  "  id: \"script\"\n"
+  "  component: \"/virtual_gamepad/player.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -95,8 +60,8 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
-  "  data: \"tile_set: \\\"/main/sprites.atlas\\\"\\n"
-  "default_animation: \\\"player-down\\\"\\n"
+  "  data: \"tile_set: \\\"/virtual_gamepad/virtual_gamepad.atlas\\\"\\n"
+  "default_animation: \\\"playerShip3_red\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
@@ -113,9 +78,9 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"rocketfactory\"\n"
+  "  id: \"laserfactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/rocket.go\\\"\\n"
+  "  data: \"prototype: \\\"/virtual_gamepad/laser.go\\\"\\n"
   "load_dynamically: false\\n"
   "\"\n"
   "  position {\n"
@@ -132,43 +97,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 100.0
-    y: 100.0
-    z: 1.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-embedded_instances {
-  id: "gui"
-  data: "components {\n"
-  "  id: \"ui\"\n"
-  "  component: \"/main/ui.gui\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 0.0
-    y: 0.0
+    x: 320.0
+    y: 568.0
     z: 0.0
   }
   rotation {

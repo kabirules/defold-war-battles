@@ -29,5 +29,6 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("collision_response") then    -- [3]
 		explode(self)                                       -- [4]
 		go.delete(message.other_id)                         -- [5]
+		msg.post("/gui#ui", "add_score", {score = 100})     -- [1]
 	end
 end
