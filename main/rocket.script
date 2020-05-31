@@ -5,22 +5,29 @@ function init(self)
 	self.life = 1
 end
 
+local function explode(self)                                -- [1]
+	self.life = 1000
+	go.set_rotation(vmath.quat())
+	self.speed = 0
+	msg.post("#sprite", "play_animation", { id = hash("explosion") })       
+end
+
 function update(self, dt)
 	local pos = go.get_position()                   -- [3]
 	pos = pos + self.dir * self.speed * dt          -- [4]
 	go.set_position(pos)                            -- [5]
 
-	self.life = self.life - dt                              -- [1]
-	if self.life < 0 then                                   -- [2]
-		self.life = 1000                                    -- [3]
-		go.set_rotation(vmath.quat())                       -- [4]
-		self.speed = 0                                      -- [5]
-		msg.post("#sprite", "play_animation", { id = hash("explosion") }) -- [6]
-	end	
+	self.life = self.life - dt
+	if self.life < 0 then
+		explode(self)                                       -- [2]
+	end
 end
 
-function on_message(self, message_id, message, sender)      -- [1]
-	if message_id == hash("animation_done") then            -- [2]
-		go.delete()                                         -- [3]
-	end 
+function on_message(self, message_id, message, sender)
+	if message_id == hash("animation_done") then
+		go.delete()
+	elseif message_id == hash("collision_response") then    -- [3]
+		explode(self)                                       -- [4]
+		go.delete(message.other_id)                         -- [5]
+	end
 end
